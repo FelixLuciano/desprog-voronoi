@@ -6,6 +6,58 @@ Subtítulo
 
 Para criar um parágrafo, basta escrever um texto contínuo, sem pular linhas.
 
+Introdução
+---------
+
+Veremos hoje um algoritmo chamado de Algoritmo de Fortune. Este utiliza o Diagrama de Voronoi e uma lista de pontos, para verem as áreas de influência de um ponto.
+
+Diagrama de Voronoi
+---------
+O diagrama de Voronoi é uma estrutura de dados geométrica importante para a solução de problemas de proximidade. O diagrama teve seu primeiro registro de uso por volta de 1644 por Descartes, no intuito de demonstrar a disposição da matéria no sistema solar.
+
+![](descartes.jpg)
+
+Ao observar a imagem, vemos que existem regiões, as quais estão mais perto de um certo ponto, ou seja área de influência. **Área de influência** neste caso seria onde um certo ponto seria o mais perto, em relação a um grupo de diversos pontos no plano. Ao analisar o plano inteiro, vai se formando uma figura, e que as arestas do diagrama constituem um lugar onde os pontos são equidistantes em relação à dois locais.
+
+![](voronoi.png)
+
+
+??? Exercício 1
+
+Este é um exemplo de exercício, entre `md ???`.
+
+::: Gabarito
+Este é um exemplo de gabarito, entre `md :::`.
+:::
+
+???
+
+??? Exercício 2
+
+Este é um exemplo de exercício, entre `md ???`.
+
+::: Gabarito
+Este é um exemplo de gabarito, entre `md :::`.
+:::
+
+???
+
+??? Exercício 3
+
+Este é um exemplo de exercício, entre `md ???`.
+
+::: Gabarito
+Este é um exemplo de gabarito, entre `md :::`.
+:::
+
+???
+
+
+
+
+
+
+
 Você também pode criar
 
 1. listas;
