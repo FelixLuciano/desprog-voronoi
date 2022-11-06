@@ -56,7 +56,7 @@ O Algoritmo de Fortuna calcula diagramas de Voronoi utilizando duas premissas di
 
 Algoritmo de Fortuna, por traz dos panos
 ---------
-Beleza, mas como isso funciona na prática? Essencialmente, os pontos são colocados em uma lista de prioridade, com esta tendo como prioridade a proximidade da linha da varredura, e as parábolas são colocadas em uma árvore binária. Para cada item na lista, remove o item, calcula a parábola e adiciona as parábolas na árvore. Para cada uma se calcula aonde as intersecções vão ocorrer, e em seguida os pontos de intersecção entre circunferências são conectados por arestas, e estas geram as margens das áreas de influência do diagrama de Voronoi. Simples né? 
+Beleza, mas como isso funciona na prática? Essencialmente, os pontos são colocados em uma lista de prioridade, com esta tendo como prioridade a proximidade da linha da varredura, e as parábolas são colocadas em uma árvore binária de busca. Para cada item na lista, remove o item, calcula a parábola e adiciona as parábolas na árvore. Para cada uma se calcula aonde as intersecções vão ocorrer, e em seguida os pontos de intersecção entre circunferências são conectados por arestas, e estas geram as margens das áreas de influência do diagrama de Voronoi. Simples né? 
 
 
 
@@ -144,10 +144,40 @@ void parabula(struct *point, int varredura) {
 
 Arvore binaria
 ---------
-Árvore binária é uma estrutura de dados caracterizada por:
+Árvore binária de busca é uma arvore binaria com seguinte caracteristica: 
+Assuma que temos um nó qualquer N, todos os valores maiores que N, serão inseridos a sua direita, e todos os valores menores que N serão inseridos a sua esquerda.
 
-- Ou não tem elemento algum (árvore vazia).
-- Ou tem um elemento distinto, denominado raiz, com dois apontamentos para duas estruturas diferentes, denominadas sub-árvore esquerda e sub-árvore direita.
+
+![](bst.png)
+
+??? Exercício 5
+
+Para as inputs dadas, crie uma arvore binaria de busca, considere a base da arvore a primeira input.
+inputs: 21, 14, 28, 11, 18, 25, 32, 5, 12, 15, 19, 23, 27, 30, 37.
+
+::: Gabarito
+![](bst_gabarito.png)
+:::
+
+???
+
+
+
+Juntando Tudo
+---------
+Ja criamos uma fila de prioridade, calculamos as parabulas e entendemos como a arvore binaria de busca funciona, agora vamos juntar tudo e lidar com os enventos. Como foi dito previamente, o algoritmo de fortuna lida com dois tipos de eventos, pontos que passam pela linha de varredura, e parabulas que se encontram. 
+Para os pontos na linha de varredura, para todo ponto na fila, deve-se calcular a parabula, e para toda parabula deve-se calcular os pontos de intersecção. 
+
+??? Exercício
+
+Este é um exemplo de exercício, entre `md ???`.
+
+::: Gabarito
+Este é um exemplo de gabarito, entre `md :::`.
+:::
+
+???
+
 
 
 :fortune
