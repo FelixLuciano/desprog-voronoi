@@ -1,10 +1,5 @@
-Título
+Algoritmo de Fortune para Diagrama de Voronoi
 ======
-
-Subtítulo
----------
-
-Para criar um parágrafo, basta escrever um texto contínuo, sem pular linhas.
 
 Introdução
 ---------
@@ -17,43 +12,145 @@ O diagrama de Voronoi é uma estrutura de dados geométrica importante para a so
 
 ![](descartes.jpg)
 
-Ao observar a imagem, vemos que existem regiões, as quais estão mais perto de um certo ponto, ou seja área de influência. **Área de influência** neste caso seria onde um certo ponto seria o mais perto, em relação a um grupo de diversos pontos no plano. Ao analisar o plano inteiro, vai se formando uma figura, e que as arestas do diagrama constituem um lugar onde os pontos são equidistantes em relação à dois locais.
+Ao observar a imagem, vemos que existem regiões, as quais estão mais perto de um certo ponto, ou seja área de influência. **Área de influência** neste caso seria onde um certo ponto seria o mais perto, em relação a um grupo de diversos pontos no plano. Ao analisar o plano inteiro, vai se formando uma figura, e o diagrama é formado.
 
 ![](voronoi.png)
 
 
 ??? Exercício 1
 
-Este é um exemplo de exercício, entre `md ???`.
+Quantas áreas de influência podem ser encontrados na imagem?
+
+![](ex1.png)
 
 ::: Gabarito
-Este é um exemplo de gabarito, entre `md :::`.
+16
 :::
 
 ???
 
 ??? Exercício 2
 
-Este é um exemplo de exercício, entre `md ???`.
+O que as linhas da imagem representam?
 
 ::: Gabarito
-Este é um exemplo de gabarito, entre `md :::`.
+As arestas do diagrama constituem um lugar onde dois pontos são equidistantes em relação à um local.
 :::
 
 ???
+
+
+
+Algoritmo de Fortuna
+---------
+O Algoritmo de Fortuna calcula diagramas de Voronoi utilizando duas premissas diferentes: a linha de varredura e a linha de praia. Imagine uma linha que vai varrendo o plano da esquerda para a direita, e que esta linha é reta e perpendicular com a base do plano. Isto seria a proposta da linha de varredura. Quando um ponto entra em contato com a linha de varredura, começa a se calcular uma circunferência, onde todos os pontos da circunferência estão equidistantes do ponto e da linha de varredura. Esta circunferência que vai sendo formada é a linha de praia.
+
+![](linhas-do-fortune.png)
+
+* {red}(Linha Vermelha) -> Linha de Varredura
+
+* **Linha Azul** -> Linha de Praia
+
+
+
+
+Algoritmo de Fortuna, por traz dos panos
+---------
+Beleza, mas como isso funciona na prática? Essencialmente, os pontos são colocados em uma lista de prioridade, com esta tendo como prioridade a proximidade da linha da varredura, e as parábolas são colocadas em uma árvore binária. Para cada item na lista, remove o item, calcula a parábola e adiciona as parábolas na árvore. Para cada uma se calcula aonde as intersecções vão ocorrer, e em seguida os pontos de intersecção entre circunferências são conectados por arestas, e estas geram as margens das áreas de influência do diagrama de Voronoi. Simples né? 
+
+
+
+
+Implementando, fila de prioridade
+---------
 
 ??? Exercício 3
 
-Este é um exemplo de exercício, entre `md ???`.
+Modifique a implementação da fila com lista ligada para que o struct _node tenha um parâmetro extra, a prioridade, e modifique put() para que ele receba um int priority, e adicione na fila baseado na prioridade, vamos considerar que maior o número, maior a prioridade, se mais de um número tiver a mesma prioridade, considere a ordem de inserção. 
+
+``` c
+struct _node {
+    int value;
+    struct _node *next;
+};
+
+typedef struct _node node;
+
+void queue_int_put(queue_int *q, int value) {
+    node *n = malloc(sizeof(node));
+    n->value = value;
+    n->next = NULL;
+    if (q->last != NULL) {
+        q->last->next = n;
+    } else {
+        q->first = n;
+    }
+    q->last = n;
+}
+```
 
 ::: Gabarito
-Este é um exemplo de gabarito, entre `md :::`.
+
+``` c
+struct _node {
+    int value;
+    int priority;
+    struct _node *next;
+};
+//TODO - implementar a mudanca para que o gabarito esteja certo.
+void queue_int_put(queue_int *q, int value, int priority) {
+    node *n = malloc(sizeof(node));
+    n->value = value;
+    n->next = NULL;
+    if (q->last != NULL) {
+        q->last->next = n;
+    } else {
+        q->first = n;
+    }
+    q->last = n;
+}
+```
 :::
 
 ???
 
 
+Calculando as circunferências
+---------
+**MAGIA NEGRA ???**
 
+
+??? Exercício 4
+
+implemente uma funcao que calcule a parábola, baseado no ponto, e a linha de varredura
+sua função deve receber um ponteiro para o struct do ponto, e a linha de varredura, e retornar? 
+
+``` c
+void parabula(struct *point, int varredura) {
+
+}
+```
+
+::: Gabarito
+``` c
+void parabula(struct *point, int varredura) {
+    //TODO - fazer o gabarito
+}
+```
+:::
+
+???
+
+
+Arvore binaria
+---------
+Árvore binária é uma estrutura de dados caracterizada por:
+
+- Ou não tem elemento algum (árvore vazia).
+- Ou tem um elemento distinto, denominado raiz, com dois apontamentos para duas estruturas diferentes, denominadas sub-árvore esquerda e sub-árvore direita.
+
+
+:fortune
 
 
 
