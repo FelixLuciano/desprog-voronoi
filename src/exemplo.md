@@ -51,14 +51,11 @@ O Algoritmo de Fortuna calcula diagramas de Voronoi utilizando duas premissas di
 
 * **Linha Azul** -> Linha de Praia
 
-
-
-
 Algoritmo de Fortuna, por traz dos panos
 ---------
 Beleza, mas como isso funciona na prática? Essencialmente, os pontos são colocados em uma lista de prioridade, com esta tendo como prioridade a proximidade da linha da varredura, e as parábolas são colocadas em uma árvore binária de busca. Para cada item na lista, remove o item, calcula a parábola e adiciona as parábolas na árvore. Para cada uma se calcula aonde as intersecções vão ocorrer, e em seguida os pontos de intersecção entre circunferências são conectados por arestas, e estas geram as margens das áreas de influência do diagrama de Voronoi. Simples né? 
 
-
+:fortune
 
 
 Implementando, fila de prioridade
@@ -66,7 +63,7 @@ Implementando, fila de prioridade
 
 ??? Exercício 3
 
-Modifique a implementação da fila com lista ligada para que o struct _node tenha um parâmetro extra, a prioridade, e modifique put() para que ele receba um int priority, e adicione na fila baseado na prioridade, vamos considerar que maior o número, maior a prioridade, se mais de um número tiver a mesma prioridade, considere a ordem de inserção. 
+Modifique a implementação da fila com lista ligada para que o struct _node tenha um parâmetro extra, a prioridade, e modifique put() para que ele receba um int priority, e adicione na fila baseado na prioridade. Vamos considerar que maior o número, maior a prioridade, e se mais de um número tiver a mesma prioridade, considere a ordem de inserção. 
 
 ``` c
 struct _node {
@@ -139,23 +136,20 @@ void push(Node* s, int value, int priority)
 
 Calculando as circunferências
 ---------
-**MAGIA NEGRA ???**
-
 
 ??? Exercício 4
 
-implemente uma funcao que calcule a parábola, baseado no ponto, e a linha de varredura
-sua função deve receber um ponteiro para o struct do ponto, e a linha de varredura, e retornar? 
+Implemente uma função que calcula a parábola baseada no ponto e a linha de varredura. Sua função deve receber um ponteiro para o struct do ponto e a linha de varredura, e retornar a parábola. 
 
 ``` c
-void parabula(struct *point, int varredura) {
+void parabola(struct *point, int varredura) {
 
 }
 ```
 
 ::: Gabarito
 ``` c
-void parabula(struct *point, int varredura) {
+void parabola(struct *point, int varredura) {
     //TODO - fazer o gabarito
 }
 ```
@@ -164,18 +158,17 @@ void parabula(struct *point, int varredura) {
 ???
 
 
-Arvore binaria
+Árvore binária
 ---------
-Árvore binária de busca é uma arvore binaria com seguinte caracteristica: 
-Assuma que temos um nó qualquer N, todos os valores maiores que N, serão inseridos a sua direita, e todos os valores menores que N serão inseridos a sua esquerda.
+Árvore binária de busca é um diagrama que separa os nós, vendo se é maior ou menor que o nó anterior. Assuma que temos um nó qualquer N, todos os valores maiores que N serão inseridos à sua direita, e todos os valores menores que N serão inseridos a sua esquerda.
 
 
 ![](bst.png)
 
 ??? Exercício 5
 
-Para as inputs dadas, crie uma arvore binaria de busca, considere a base da arvore a primeira input.
-inputs: 21, 14, 28, 11, 18, 25, 32, 5, 12, 15, 19, 23, 27, 30, 37.
+Para as inputs dadas, crie uma árvore binária de busca. Para o primeiro input, considere a base da árvore.
+* Inputs: 21, 14, 28, 11, 18, 25, 32, 5, 12, 15, 19, 23, 27, 30, 37.
 
 ::: Gabarito
 ![](bst_gabarito.png)
@@ -187,12 +180,16 @@ inputs: 21, 14, 28, 11, 18, 25, 32, 5, 12, 15, 19, 23, 27, 30, 37.
 
 Juntando Tudo
 ---------
-Ja criamos uma fila de prioridade, calculamos as parabulas e entendemos como a arvore binaria de busca funciona, agora vamos juntar tudo e lidar com os enventos. Como foi dito previamente, o algoritmo de fortuna lida com dois tipos de eventos, pontos que passam pela linha de varredura, e parabulas que se encontram. 
-Para os pontos na linha de varredura, para todo ponto na fila, deve-se calcular a parabula, e para toda parabula deve-se calcular os pontos de intersecção. 
+Já criamos uma fila de prioridade, calculamos as parábolas e entendemos como a árvore binária de busca funciona. Agora vamos juntar tudo e lidar com os eventos. Como foi dito previamente, o Algoritmo de Fortuna lida com dois tipos de eventos:
+
+ * pontos que passam pela linha de varredura
+ * parábolas que se encontram. 
+
+Para os pontos na linha de varredura, ou seja, para todo ponto na fila, deve-se calcular a parábola, e para toda parábola deve-se calcular os pontos de intersecção. 
 
 ??? Exercício
 
-Crie a funcao que processa os ventos, pode chamar a funcao de parabula para facilitar
+Crie a função que processa os eventos. Pode chamar a função de parábola para facilitar.
 
 ::: Gabarito
 
@@ -279,84 +276,6 @@ bool circle(point a, point b, point c, double *x, point *o)
 }
 ```
 `.
-:::
-
-???
-
-
-
-:fortune
-
-
-
-
-Você também pode criar
-
-1. listas;
-
-2. ordenadas,
-
-assim como
-
-* listas;
-
-* não-ordenadas
-
-e imagens. Lembre que todas as imagens devem estar em uma subpasta *img*.
-
-![](logo.png)
-
-Para tabelas, usa-se a [notação do
-MultiMarkdown](https://fletcher.github.io/MultiMarkdown-6/syntax/tables.html),
-que é muito flexível. Vale a pena abrir esse link para saber todas as
-possibilidades.
-
-| coluna a | coluna b |
-|----------|----------|
-| 1        | 2        |
-
-Ao longo de um texto, você pode usar *itálico*, **negrito**, {red}(vermelho) e
-[[tecla]]. Também pode usar uma equação LaTeX: $f(n) \leq g(n)$. Se for muito
-grande, você pode isolá-la em um parágrafo.
-
-$$\lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \leq 1$$
-
-Para inserir uma animação, use `md :` seguido do nome de uma pasta onde as
-imagens estão. Essa pasta também deve estar em *img*.
-
-:bubble
-
-Você também pode inserir código, inclusive especificando a linguagem.
-
-``` py
-def f():
-    print('hello world')
-```
-
-``` c
-void f() {
-    printf("hello world\n");
-}
-```
-
-Se não especificar nenhuma, o código fica com colorização de terminal.
-
-```
-hello world
-```
-
-
-!!! Aviso
-Este é um exemplo de aviso, entre `md !!!`.
-!!!
-
-
-??? Exercício
-
-Este é um exemplo de exercício, entre `md ???`.
-
-::: Gabarito
-Este é um exemplo de gabarito, entre `md :::`.
 :::
 
 ???
