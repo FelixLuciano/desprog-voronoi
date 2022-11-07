@@ -97,17 +97,39 @@ struct _node {
     int priority;
     struct _node *next;
 };
-//TODO - implementar a mudanca para que o gabarito esteja certo.
-void queue_int_put(queue_int *q, int value, int priority) {
-    node *n = malloc(sizeof(node));
-    n->value = value;
-    n->next = NULL;
-    if (q->last != NULL) {
-        q->last->next = n;
-    } else {
-        q->first = n;
+ 
+// Function to push according to priority
+//codigo retirado de https://www.geeksforgeeks.org/priority-queue-using-linked-list/
+void push(Node* s, int value, int priority)
+{
+    Node* start = (*s);
+ 
+    // Create new Node
+    Node* temp = newNode(value, priority);
+ 
+    // Special Case: The head of list has lesser
+    // priority than new node. So insert new
+    // node before head node and change head node.
+    if ((*s)->priority > priority) {
+ 
+        // Insert New Node before head
+        temp->next = *s;
+        (*s) = temp;
     }
-    q->last = n;
+    else {
+ 
+        // Traverse the list and find a
+        // position to insert new node
+        while (start->next != NULL &&
+            start->next->priority < priority) {
+            start = start->next;
+        }
+ 
+        // Either at the ends of the list
+        // or at required position
+        temp->next = start->next;
+        start->next = temp;
+    }
 }
 ```
 :::
@@ -170,10 +192,93 @@ Para os pontos na linha de varredura, para todo ponto na fila, deve-se calcular 
 
 ??? Exercício
 
-Este é um exemplo de exercício, entre `md ???`.
+Crie a funcao que processa os ventos, pode chamar a funcao de parabula para facilitar
 
 ::: Gabarito
-Este é um exemplo de gabarito, entre `md :::`.
+
+``` c
+
+//codigo retirado de: 
+//https://www.cs.hmc.edu/~mbrubeck/voronoi.html
+void process_event()
+{
+   // Get the next event from the queue.
+   event *e = events.top();
+   events.pop();
+
+   if (e->valid) {
+      // Start a new edge.
+      seg *s = new seg(e->p);
+
+      // Remove the associated arc from the front.
+      arc *a = e->a;
+      if (a->prev) {
+         a->prev->next = a->next;
+         a->prev->s1 = s;
+      }
+      if (a->next) {
+         a->next->prev = a->prev;
+         a->next->s0 = s;
+      }
+
+      // Finish the edges before and after a.
+      if (a->s0) a->s0->finish(e->p);
+      if (a->s1) a->s1->finish(e->p);
+
+      // Recheck circle events on either side of p:
+      if (a->prev) check_circle_event(a->prev, e->x);
+      if (a->next) check_circle_event(a->next, e->x);
+   }
+   delete e;
+}
+
+// Look for a new circle event for arc i.
+void check_circle_event(arc *i, double x0)
+{
+   // Invalidate any old event.
+   if (i->e && i->e->x != x0)
+      i->e->valid = false;
+   i->e = NULL;
+
+   if (!i->prev || !i->next)
+      return;
+
+   double x;
+   point o;
+
+   if (circle(i->prev->p, i->p, i->next->p, &x,&o) && x > x0) {
+      // Create new event.
+      i->e = new event(x, o, i);
+      events.push(i->e);
+   }
+}
+
+// Find the rightmost point on the circle through a,b,c.
+bool circle(point a, point b, point c, double *x, point *o)
+{
+   // Check that bc is a "right turn" from ab.
+   if ((b.x-a.x)*(c.y-a.y) - (c.x-a.x)*(b.y-a.y) > 0)
+      return false;
+
+   // Algorithm from O'Rourke 2ed p. 189.
+   double A = b.x - a.x,  B = b.y - a.y,
+          C = c.x - a.x,  D = c.y - a.y,
+          E = A*(a.x+b.x) + B*(a.y+b.y),
+          F = C*(a.x+c.x) + D*(a.y+c.y),
+          G = 2*(A*(c.y-b.y) - B*(c.x-b.x));
+
+   if (G == 0) return false;  // Points are co-linear.
+
+   // Point o is the center of the circle.
+   o->x = (D*E-B*F)/G;
+   o->y = (A*F-C*E)/G;
+
+   // o.x plus radius equals max x coordinate.
+   *x = o->x + sqrt( pow(a.x - o->x, 2) + pow(a.y - o->y, 2) );
+   return true;
+}
+```
+`.
 :::
 
 ???
