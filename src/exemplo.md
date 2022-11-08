@@ -136,26 +136,61 @@ void push(Node* s, int value, int priority)
 
 Calculando as circunferências
 ---------
+Agora precisamos mudar para um mundo mais matematico, para entender como as circunferencias sao calculadas, vamos primeiro voltar as parabulas. Imagine a linha de varredura e um ponto, existe parabula, que todo ponto na parabula esta equidistante da linha de varredura e do ponto
+
+![](Parabula.png)
+
+Para simplificar este handout, vamos pular a dedução e ir direto para a equação:
+
+![](formula.png)
+
 
 ??? Exercício 4
-
 Implemente uma função que calcula a parábola baseada no ponto e a linha de varredura. Sua função deve receber um ponteiro para o struct do ponto e a linha de varredura, e retornar a parábola. 
 
 ``` c
-void parabola(struct *point, int varredura) {
+//essa questao foi possivel por conta da dexplicacao de https://jacquesheunis.com/post/fortunes-algorithm/, a formual, foi tirada diretamente de la, junto com as imagens.
 
+void parabola(struct *point, int varredura) {
+    int x;
+    int y;
+    int s;
 }
 ```
 
 ::: Gabarito
 ``` c
-void parabola(struct *point, int varredura) {
+int parabola(struct *point, int varredura) {
     //TODO - fazer o gabarito
+
+    int primeiro = 1 / ( 2*(point.y - varredura));
+
+    int segundo = math.pow((varredura - point.x), 2);
+
+    int terceiro = (point.y + varredura)/2
+
+    return (primeiro*segundo) + terceiro
 }
 ```
 :::
 
 ???
+
+
+Mas como o vonoroi funciona? 
+--------
+Ainda falta responder a questão, porque isso funciona?
+
+A resposta esta...
+//esta secao precisa ser traduzida, mas a ideia eh ultilizar essa esplicacao, do site https://jacquesheunis.com/post/fortunes-algorithm/, precisamos traduzir ainda
+
+The useful part of this definition is that it gives us a handle on the distances between things. Let us consider for a moment two curves, defined by two different points 
+
+//falta 
+
+Since this is true for all points pp at which the two curves intersect, we can find the boundary between the two cells by moving the directrix around and drawing a line consisting of the intersection points. This is the mathematical reasoning behind Fortune’s algorithm. Although the algorithm doesn’t quite function mechanically in quite the way explained here, this is the reason why the output is a valid Voronoi diagram.
+
+One thing I should mention though, is that I have yet to show why this intersection will always be a straight line.
 
 
 Árvore binária
@@ -187,7 +222,7 @@ Já criamos uma fila de prioridade, calculamos as parábolas e entendemos como a
 
 Para os pontos na linha de varredura, ou seja, para todo ponto na fila, deve-se calcular a parábola, e para toda parábola deve-se calcular os pontos de intersecção. 
 
-??? Exercício
+??? Exercício 6
 
 Crie a função que processa os eventos. Pode chamar a função de parábola para facilitar.
 
