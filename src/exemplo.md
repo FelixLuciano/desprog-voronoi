@@ -136,7 +136,7 @@ void push(Node* s, int value, int priority)
 
 Calculando as circunferências
 ---------
-Agora precisamos mudar para um mundo mais matematico, para entender como as circunferencias sao calculadas, vamos primeiro voltar as parabulas. Imagine a linha de varredura e um ponto, existe parabula, que todo ponto na parabula esta equidistante da linha de varredura e do ponto
+Agora precisamos mudar para um mundo mais matemático para entender como as circunferências são calculadas. Primeiro vamos voltar as para as parábolas. Imagine a linha de varredura e um ponto, existe parábola, e todo ponto na parábola está equidistante da linha de varredura e do ponto.
 
 ![](Parabula.png)
 
@@ -144,12 +144,14 @@ Para simplificar este handout, vamos pular a dedução e ir direto para a equaç
 
 ![](formula.png)
 
+Foi feita uma análise interativa que pode ser vista através deste link: https://www.desmos.com/calculator/8ebv2gj7jm
+
 
 ??? Exercício 4
 Implemente uma função que calcula a parábola baseada no ponto e a linha de varredura. Sua função deve receber um ponteiro para o struct do ponto e a linha de varredura, e retornar a parábola. 
 
 ``` c
-//essa questao foi possivel por conta da dexplicacao de https://jacquesheunis.com/post/fortunes-algorithm/, a formual, foi tirada diretamente de la, junto com as imagens.
+//Essa questão foi possivel por conta da da explicação de https://jacquesheunis.com/post/fortunes-algorithm/. A fórmula foi tirada diretamente de lá, junto com as imagens.
 
 void parabola(struct *point, int varredura) {
     int x;
@@ -161,7 +163,6 @@ void parabola(struct *point, int varredura) {
 ::: Gabarito
 ``` c
 int parabola(struct *point, int varredura) {
-    //TODO - fazer o gabarito
 
     int primeiro = 1 / ( 2*(point.y - varredura));
 
@@ -177,7 +178,7 @@ int parabola(struct *point, int varredura) {
 ???
 
 
-Mas como o vonoroi funciona? 
+Mas como o Vonoroi funciona? 
 --------
 Ainda falta responder a questão, porque isso funciona?
 
