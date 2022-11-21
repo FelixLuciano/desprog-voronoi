@@ -14,13 +14,6 @@ Deixando menos informal, **Área de influência** neste caso seria onde um certo
 
 ![](voronoi.png)
 
-Diagrama de Voronoi
----------
-O diagrama de Voronoi é uma estrutura de dados geométrica importante para a solução de problemas de proximidade. O diagrama teve seu primeiro registro de uso por volta de 1644 por Descartes, no intuito de demonstrar a disposição da matéria no sistema solar.
-
-![](descartes.jpg)
-
-
 ??? Exercício 1
 
 Observando os pontos na imagem, tente desenhar as suas áreas de influência.
@@ -28,14 +21,20 @@ Observando os pontos na imagem, tente desenhar as suas áreas de influência.
 ![](ex1.png)
 
 ::: Gabarito
-![](ex1gabarito.png)
+![](ex1-gabarito.png)
 :::
 
 ???
 
+Diagrama de Voronoi
+---------
+O diagrama de Voronoi é uma estrutura de dados geométrica importante para a solução de problemas de proximidade. O diagrama teve seu primeiro registro de uso por volta de 1644 por Descartes, no intuito de demonstrar a disposição da matéria no sistema solar.
+
+![](descartes.jpg)
+
 ??? Exercício 2
 
-O que as linhas da imagem representam?
+O que as linhas das áreas de influência representam?
 
 ::: Gabarito
 As arestas do diagrama constituem um lugar onde dois pontos são equidistantes em relação à um local.
@@ -55,12 +54,21 @@ O Algoritmo de Fortuna calcula diagramas de Voronoi utilizando duas premissas di
 
 * **Linha Azul** -> Linha de Praia
 
+??? Exercício 3
+
+Tente desenhar a linha de varredura e a linha de praia para os 4 primeiros passos.
+
+![](ex3.png)
+
+::: Gabarito
+:fortune
+:::
+
+???
+
 Algoritmo de Fortuna, por traz dos panos
 ---------
 Beleza, mas como isso funciona na prática? Essencialmente, os pontos são colocados em uma lista de prioridade, com esta tendo como prioridade a proximidade da linha da varredura, e as parábolas são colocadas em uma árvore binária de busca. Para cada item na lista, remove o item, calcula a parábola e adiciona as parábolas na árvore. Para cada uma se calcula aonde as intersecções vão ocorrer, e em seguida os pontos de intersecção entre circunferências são conectados por arestas, e estas geram as margens das áreas de influência do diagrama de Voronoi. Simples né? 
-
-:fortune
-
 
 Implementando, fila de prioridade
 ---------
