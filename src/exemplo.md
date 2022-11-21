@@ -6,25 +6,29 @@ Introdução
 
 Veremos hoje um algoritmo chamado de Algoritmo de Fortune. Este utiliza o Diagrama de Voronoi e uma lista de pontos, para verem as áreas de influência de um ponto.
 
+Área de Influência
+---------
+
+Ao observar a imagem abaixo, vemos que existem regiões, as quais estão mais perto de um certo ponto, ou seja área de influência. Uma definição formal de **Área de influência** seria a seguinte: Dado um conjunto S de n pontos no plano queremos determinar para cada ponto p de S qual é a região dos pontos do plano que estão mais próximos de p do que de qualquer outro ponto em S. 
+Deixando menos informal, **Área de influência** neste caso seria onde um certo ponto seria o mais perto, em relação a um grupo de diversos pontos no plano. Ao analisar o plano inteiro, vai se formando uma figura, e o diagrama é formado.
+
+![](voronoi.png)
+
 Diagrama de Voronoi
 ---------
 O diagrama de Voronoi é uma estrutura de dados geométrica importante para a solução de problemas de proximidade. O diagrama teve seu primeiro registro de uso por volta de 1644 por Descartes, no intuito de demonstrar a disposição da matéria no sistema solar.
 
 ![](descartes.jpg)
 
-Ao observar a imagem, vemos que existem regiões, as quais estão mais perto de um certo ponto, ou seja área de influência. **Área de influência** neste caso seria onde um certo ponto seria o mais perto, em relação a um grupo de diversos pontos no plano. Ao analisar o plano inteiro, vai se formando uma figura, e o diagrama é formado.
-
-![](voronoi.png)
-
 
 ??? Exercício 1
 
-Quantas áreas de influência podem ser encontrados na imagem?
+Observando os pontos na imagem, tente desenhar as suas áreas de influência.
 
 ![](ex1.png)
 
 ::: Gabarito
-16
+![](ex1gabarito.png)
 :::
 
 ???
@@ -183,7 +187,7 @@ Mas como o Vonoroi funciona?
 Ainda falta responder a questão, porque isso funciona?
 
 A resposta esta...
-//esta secao precisa ser traduzida, mas a ideia eh ultilizar essa esplicacao, do site https://jacquesheunis.com/post/fortunes-algorithm/, precisamos traduzir ainda
+//esta seção precisa ser traduzida, mas a ideia eh utilizar essa explicação, do site https://jacquesheunis.com/post/fortunes-algorithm/, precisamos traduzir ainda
 
 The useful part of this definition is that it gives us a handle on the distances between things. Let us consider for a moment two curves, defined by two different points 
 
