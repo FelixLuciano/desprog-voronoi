@@ -10,7 +10,11 @@ Veremos hoje um algoritmo chamado de Algoritmo de Fortune. Este utiliza o Diagra
 ---------
 
 Ao observar a imagem abaixo, vemos que existem regiões, as quais estão mais perto de um certo ponto, ou seja área de influência. Uma definição formal de **Área de influência** seria a seguinte: Dado um conjunto S de n pontos no plano queremos determinar para cada ponto p de S qual é a região dos pontos do plano que estão mais próximos de p do que de qualquer outro ponto em S. 
-Deixando menos informal, **Área de influência** neste caso seria onde um certo ponto seria o mais perto, em relação a um grupo de diversos pontos no plano. Ao analisar o plano inteiro, vai se formando uma figura, e o diagrama é formado.
+Deixando menos formal: Imagine uma região no espaço com pontos, a **Área de influência** de um ponto representa todo espaço que esta mais perto deste ponto do que todos os outros.
+Um diagrama de vonoroi representa isto, as regioes no espaço que estão mais perto de cada ponto.
+
+
+onde um certo ponto seria o mais perto, em relação a um grupo de diversos pontos no plano. Ao analisar o plano inteiro, vai se formando uma figura, e o diagrama é formado.
 
 ![](voronoi.png)
 
@@ -35,12 +39,22 @@ O diagrama de Voronoi é uma estrutura de dados geométrica importante para a so
 ??? Exercício 2
 
 O que as linhas das áreas de influência representam?
+![](vonoroi.png)
 
 ::: Gabarito
 As arestas do diagrama constituem um lugar onde dois pontos são equidistantes em relação à um local.
 :::
 
 ???
+
+
+
+
+
+
+
+
+
 
 
 
