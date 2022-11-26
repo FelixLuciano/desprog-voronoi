@@ -77,7 +77,7 @@ Desenhe em uma folha quadriculada, um ponto P, uma linha L, e a parábola dos po
 
 ::: Gabarito
 
-![](parabula.png)
+![](Parabula.png)
 :::
 
 ???
