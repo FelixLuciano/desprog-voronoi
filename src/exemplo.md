@@ -89,7 +89,7 @@ Beleza, temos uma parábola que marca a região equidistante entre a linha de va
 A utilidade de definir uma parábola desse jeito, vem no momento que temos mais de 1 ponto para a mesma linha de varredura. Pense, se temos 2 pontos para a mesma linha,
 vai existir uma intersecção entre as duas parabolas. 
 
-**Dica:** temos este desmos para ajudar: https://www.desmos.com/calculator/8ebv2gj7jm
+**Dica:** temos este desmos para ajudar: [desmos.com/calculator/j5lu6ie9mx](https://www.desmos.com/calculator/j5lu6ie9mx)
 
 ??? Exercício 4
 O que temos nessa intersecção? 
